@@ -32,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('productos');
+    await queryInterface.dropTable('producto');
   }
 };
