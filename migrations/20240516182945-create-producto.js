@@ -21,6 +21,14 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue:"Sin descripción"
       },
+      categoriaid: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'categoria',
+          key: 'id'
+        }
+        },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
