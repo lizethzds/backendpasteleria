@@ -30,7 +30,8 @@ self.get = async function(req, res){
 self.create = async function(req, res){
     try{
         let data = await categoria.create({
-            nombre: req.body.nombre
+            nombre: req.body.nombre,
+            protegida: req.body.protegida
         })
         return res.status(201).json(data)
     }catch(error){

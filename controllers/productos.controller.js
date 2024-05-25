@@ -1,4 +1,5 @@
 const {producto, categoria} = require('../models')
+const { Op } = require('sequelize');
 let self = {}
 
 

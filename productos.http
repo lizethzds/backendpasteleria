@@ -1,0 +1,38 @@
+GET http://localhost:3000/api/productos
+
+###
+
+GET http://localhost:3000/api/productos?s=a
+
+###
+
+GET http://localhost:3000/api/productos/3
+
+###
+
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+    "nombre": "Volovan de salchicha",
+    "precio": 12,
+    "descripcion": "volovan",
+    "categoriaid": 4
+}
+
+###
+PUT http://localhost:3000/api/productos/3
+Content-Type: application/json
+
+{
+    "productoid":3,
+    "nombre": "Pastel de cacahuate",
+    "precio": 300,
+    "descripcion": "Pastel de 1/4",
+    "categoriaid": 3
+}
+
+###
+DELETE http://localhost:3000/api/productos/3
+###
+
