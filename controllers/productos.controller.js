@@ -1,37 +1,39 @@
-const {producto} = require('../models')
+const {producto, categoria} = require('../models')
 let self = {}
 
-self.getAll = async function(req, res){
-    try{
-        const  {s} = req.query;
+
+self.getAll = async function(req, res) {
+    try {
+        const { s } = req.query;
         const filters = {};
 
-        if(s){
+        if (s) {
             filters.nombre = {
                 [Op.like]: `%${s}%`
-            }
+            };
         }
 
+        console.log("Filters:", filters);
+
         let data = await producto.findAll({
-            where: filters, 
+            where: filters,
             attributes: [['id', 'productoid'], 'nombre', 'precio', 'descripcion'],
             include: {
                 model: categoria,
-                as: 'categoria',
-                attributes: [['id', 'categoriaid'], 'nombre', 'protegida'],
-                through: { attributes: []}
-            },
-            subQuery: false
+                attributes: [['id', 'categoriaid'], 'nombre', 'protegida']
+            }
         });
 
-        return res.status(200).json(data)
-    }catch(error){
-        return res.status(500).json(error)
+        console.log("Data:", data);
 
-
+        return res.status(200).json(data);
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({ error: error.message });
     }
+};
 
-}
+  
 
 self.get = async function(req, res){
     try{
