@@ -14,11 +14,13 @@ self.login = async function (req, res) {
         
     }
 
+    console.log(req.body)
+
     try {
         let data = await usuario.findOne({
             where: { email: email },
             raw: true,
-            attributes: ['id', 'email', 'nombre', 'passwordhash', [Sequelize.col('col.nombre'), 'rol']],
+            attributes: ['id', 'email', 'nombre', 'passwordhash', [Sequelize.col('rol.nombre'), 'rol']],
             include: { model: rol, attributes: []}
         })
 
@@ -29,18 +31,23 @@ self.login = async function (req, res) {
         const passwordMatch = await bcrypt.compare(password, data.passwordhash)
         if (!passwordMatch)
             return res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos.' })
-    } catch (error) {
-        return null
-    }
-    //utilizamos los nombres de Claims estandar
-    token = GeneraToken(data.email, data.nombre, data.rol)
 
-    return res.status(200).json({
-        email: data.email,
-        nombre: data.nombre,
-        rol: data.rol,
-        jwt: token
-    })
+        //utilizamos los nombres de Claims estandar
+        token = GeneraToken(data.email, data.nombre, data.rol)
+
+        return res.status(200).json({
+            email: data.email,
+            nombre: data.nombre,
+            rol: data.rol,
+            jwt: token
+        })
+
+    } catch (error) {
+        console.log(error)
+        return res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos.' })
+    }
+
+    
 
 }
 
