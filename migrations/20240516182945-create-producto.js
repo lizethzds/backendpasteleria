@@ -21,6 +21,16 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue:"Sin descripción"
       },
+      archivoid: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'archivo',
+            key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+    },
       categoriaid: {
         type: Sequelize.INTEGER,
         allowNull: false,

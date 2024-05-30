@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
      this.belongsTo(models.categoria, {foreignKey:"categoriaid"})
+     this.belongsTo(models.archivo, {foreignKey:"archivoid"})
     }
   }
   producto.init({
@@ -27,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue:"Sin descripcion",
     },
+    archivoid: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+  },        
     categoriaid:{
       type: DataTypes.INTEGER,
       allowNull:false,
