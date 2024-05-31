@@ -3,7 +3,7 @@ const usuarios = require('../controllers/usuarios.controller')
 const Authorize = require('../middlewares/auth.middleware')
 
 // GET: api/usuarios
-router.get('/:email', Authorize('Administrador'), usuarios.get)
+router.get('/', Authorize('Administrador'), usuarios.getAll)
 
 // GET: api/usuarios/email
 router.get('/:email', Authorize('Administrador'), usuarios.get)

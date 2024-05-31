@@ -2,6 +2,7 @@ const { bitacora } = require('../models')
 
 let self = {}
 
+// GET: api/bitacora
 self.getAll = async function (req, res, next) {
     let data = await bitacora.findAll({
         attributes: [['id', 'bitacoraId'], 'accion', 'elementoid', 'ip', 'usuario', 'fecha'],

@@ -2,42 +2,43 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-    class usuario extends Model {
+    class bitacora extends Model {
         static associate(models) {
-            usuario.belongsTo(models.rol);
+            // Relaciones
         }
     }
 
-    usuario.init({
+    bitacora.init({
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true
         },
-        email: {
-            type: DataTypes.STRING,
-            unique: true,
-            allowNull: false
-        },
-        passwordhash: {
+        accion: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        nombre: {
+        elementoid: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        ip: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        protegido: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        },
-        rolid: {
+        usuario: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        fecha: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         },
     }, {
         sequelize,
         freezeTableName: true,
-        modelName: 'usuario',
+        modelName: 'bitacora',
     });
-    return usuario;
+
+    return bitacora;
 };

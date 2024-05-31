@@ -1,11 +1,10 @@
 const { usuario, rol, Sequelize } = require('../models')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const { where } = require('sequelize')
 
 let self = {}
 
-//GET: api/usuarios
+// GET: api/usuarios
 self.getAll = async function (req, res) {
     const data = await usuario.findAll({
         raw: true,
@@ -34,7 +33,6 @@ self.get = async function (req, res) {
 self.create = async function (req, res) {
     try {
         const rolusuario = await rol.findOne({ where: { nombre: req.body.rol } })
-        console.log(rolusuario.id)
 
         const data = await usuario.create({
             id: crypto.randomUUID(),
@@ -43,6 +41,8 @@ self.create = async function (req, res) {
             nombre: req.body.nombre,
             rolid: rolusuario.id
         })
+        // Bitacora
+        req.bitacora("usuarios.crear", data.email)
         return res.status(201).json({
             id: data.id,
             email: data.email,
@@ -50,7 +50,7 @@ self.create = async function (req, res) {
             rolid: rolusuario.nombre
         })
     } catch (error) {
-        console.log(error)
+        return res.status(400).send(error)
     }
 }
 
@@ -63,22 +63,26 @@ self.update = async function (req, res) {
     const data = await usuario.update(req.body, {
         where: { email: email },
     })
-
-    if (data[0] == 0)
+    if (data[0] === 0)
         return res.status(404).send()
-    else
-        return res.status(204).send()
+    // Bitacora
+    req.bitacora("usuarios.editar", email)
+    return res.status(204).send()
 }
 
 // DELETE: api/usuarios/email
 self.delete = async function (req, res) {
     const email = req.params.email
-    let data = await usuario.findOne({ where: { email } })
-    // no se puede eliminar categorias protegidas
+    let data = await usuario.findOne({ where: { email: email } })
+    // No se pueden eliminar categorias protegidas
     if (data.protegido) return res.status(403).send()
 
     data = await usuario.destroy({ where: { email: email } })
-    if (data === 1) return res.status(204).send() //elemento eliminado
+    if (data === 1) {
+        // Bitacora
+        req.bitacora("usuarios.eliminar", email)
+        return res.status(204).send()   // Elemento eliminado
+    }
 
     return res.status(400).send()
 }
