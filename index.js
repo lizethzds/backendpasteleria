@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger-output.json')
+
 // const errorhandler = require('./middlewares/errorhandler');
 
 dotenv.config();
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(cors(corsOptions));
+app.use(require("./middlewares/bitacora.middleware"))
+
 
 // Asegúrate de que las rutas empiecen con "/"
 app.use("/api/categorias", require('./routes/categorias.routes'));
