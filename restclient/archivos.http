@@ -1,7 +1,7 @@
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3ZlcmFAdXYubXgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJHdWlsbGVybW8gVmVyYSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE1MjgyODkzLCJleHAiOjE3MTUyODQwOTN9.8JdgfyxKizePUroOm0WSVVeX1hI0l2ztGpLujYz1fro
 
 GET http://localhost:3000/api/archivos
-Authorization: Bearer {{ token }}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AdXYubXgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJhZG1pblBydWViYSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3MTg3NzcxLCJleHAiOjE3MTcxODg5NzF9.-N58KQ-F6MeYartPEzTNg35mLU8kB6N-ueROT_8tqoo
 
 ###
 
@@ -17,14 +17,17 @@ Authorization: Bearer {{ token }}
 
 POST http://localhost:3000/api/archivos
 Content-Type: multipart/form-data; boundary=XXX
-Authorization: Bearer {{ token }}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AdXYubXgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJhZG1pblBydWViYSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpc3MiOiJTZXJ2aWRvckZlaUpXVCIsImF1ZCI6IkNsaWVudGVzRmVpSldUIiwiaWF0IjoxNzE3MTg3NzcxLCJleHAiOjE3MTcxODg5NzF9.-N58KQ-F6MeYartPEzTNg35mLU8kB6N-ueROT_8tqoo
 
 --XXX
-Content-Disposition: form-data; name="file"; filename="elpadrino.jpg"
-Content-Type: image/jpeg
+Content-Disposition: form-data; name="file"; filename="pastelchoco.jpg"
+Content-Type: image/jpg
 
-< ./assets/elpadrino.jpg
+< ./assets/pastelchoco.jpg
 --XXX--
+
+###
+
 
 ###
 
@@ -33,10 +36,10 @@ Content-Type: multipart/form-data; boundary=XXX
 Authorization: Bearer {{ token }}
 
 --XXX
-Content-Disposition: form-data; name="file"; filename="caballerooscuro.jpg"
+Content-Disposition: form-data; name="file"; filename="volovan.jpg"
 Content-Type: image/jpeg
 
-< ./assets/caballerooscuro.jpg
+< ./assets/volovan.jpg
 --XXX--
 
 ###
