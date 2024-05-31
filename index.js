@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 // const errorhandler = require('./middlewares/errorhandler');
 
 dotenv.config();
@@ -14,7 +16,7 @@ var corsOptions = {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(cors(corsOptions));
 
 // Asegúrate de que las rutas empiecen con "/"
