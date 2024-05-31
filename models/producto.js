@@ -30,7 +30,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     archivoid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references:{
+        model:'archivo',
+        key:'id'
+      }
   },        
     categoriaid:{
       type: DataTypes.INTEGER,

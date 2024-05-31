@@ -27,17 +27,18 @@ module.exports = {
                 defaultValue: true
             },
             datos: {
-                type: Sequelize.BLOB,
-                allowNull: true,
-                defaultValue: false
+                type: Sequelize.BLOB('long'),
+                allowNull: true
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             }
         });
     },

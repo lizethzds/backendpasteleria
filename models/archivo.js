@@ -4,7 +4,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class archivo extends Model {
         static associate(models) {
-            archivo.hasMany(models.producto, { foreignKey: 'id' });
+            this.hasMany(models.producto, { foreignKey: 'id' });
         }
     }
 
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         sequelize,
-        freezeTableName: true,
+        tableName:'archivo',
         modelName: 'archivo',
     });
 
