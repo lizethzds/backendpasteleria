@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class producto extends Model {
     
     static associate(models) {
-     this.belongsTo(models.categoria, {foreignKey:"categoriaid"})
-     this.belongsTo(models.archivo, {foreignKey:"archivoid"})
+     this.belongsTo(models.categoria, {foreignKey:'id'})
+     this.belongsTo(models.archivo, {foreignKey:'id'})
     }
   }
   producto.init({
