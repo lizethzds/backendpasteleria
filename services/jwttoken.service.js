@@ -12,16 +12,16 @@ const GeneraToken = (email, nombre, rol) => {
         "aud": "ClientesFeiJWT"
     },
         jwtSecret, {
-            expiresIn: '20m', //20 minutos
-        })
-        return token;
+        expiresIn: '10m', //20 minutos
+    })
+    return token;
 }
 
 const TiempoRestanteToken = (req) => {
     try {
         const authHeader = req.header('Authorization')
-        if (!authHeader.startsWith('Bearer '))
-            return null            
+        // if (!authHeader.startsWith('Bearer '))
+        //     return null            
         // Obtiene el token de la solicitud
         const token = authHeader.split(' ')[1]
         // verifica el token, si no es valido envia error y salta al catch

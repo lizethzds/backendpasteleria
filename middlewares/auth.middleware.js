@@ -24,8 +24,8 @@ const Authorize = (rol) => {
 
             //codigo para enviar un nuevo token
             var minutosRestantes = (decodedToken.exp - (new Date().getTime() / 1000)) / 60;
-            //si quedan 5 minutos, le mandamos un nuevo token
-            if (minutosRestantes < 5) {
+            //si quedan 4 minutos, le mandamos un nuevo token
+            if (minutosRestantes < 4) {
                 var nuevoToken = GeneraToken(decodedToken[ClaimTypes.Name], decodedToken[ClaimTypes.GiveName], decodedToken[ClaimTypes.Role])
                 res.header("Set-Authorization", nuevoToken)
             }
